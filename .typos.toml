@@ -71,3 +71,6 @@ MTK = "MTK"
 ODE = "ODE"
 PDE = "PDE"
 SDE = "SDE"
+
+# Author surname in the Ono Runge-Kutta methods.
+Ono = "Ono"
