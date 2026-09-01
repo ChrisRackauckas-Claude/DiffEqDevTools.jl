@@ -927,12 +927,16 @@ function WorkPrecisionSet(
         end
     end
     stats = nothing
-    wps = [WorkPrecision(
-               prob, _abstols[i], _reltols[i], errors[i], times[:, i],
-               _dts[i], stats, names[i], error_estimate, N,
-               get(setups[i], :tags, Symbol[])
-           )
-           for i in 1:N]
+    wps = [
+        WorkPrecision(
+            prob, _abstols[i], _reltols[i],
+            _dicts_to_structarray([Dict(error_estimate => error) for error in errors[i]]),
+            times[:, i],
+            _dts[i], stats, names[i], error_estimate, N,
+            get(setups[i], :tags, Symbol[])
+        )
+            for i in 1:N
+    ]
     return WorkPrecisionSet(
         wps, N, abstols, reltols, prob, setups, names, error_estimate,
         Int(trajectories)
